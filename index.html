@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeamProject - DevOps & Network Engineers</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav>
+        <div class="container">
+            <div class="logo">Team<span>Project</span></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HOME ===== -->
+    <section id="home" class="home">
+        <div class="container">
+            <h1>Welcome to <span>Team Portfolio</span></h1>
+            <p>DevOps & Network Engineering Experts</p>
+            <div class="home-stats">
+                <div><span>4</span> Members</div>
+                <div><span>12+</span> Projects</div>
+                <div><span>20+</span> Technologies</div>
+                <div><span>4+</span> Years</div>
+            </div>
+            <a href="#team" class="btn">Meet Our Team</a>
+        </div>
+    </section>
+
+    <!-- ===== TEAM ===== -->
+    <section id="team" class="section">
+        <div class="container">
+            <h2>Our <span>Team</span></h2>
+            <p class="subtitle">Passionate professionals dedicated to excellence</p>
+            <div class="team-grid" id="teamContainer"></div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <h2>Our <span>Skills</span></h2>
+            <p class="subtitle">Technologies and tools we master</p>
+            <div class="skills-grid" id="skillsContainer"></div>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>Featured <span>Projects</span></h2>
+            <p class="subtitle">Real-world solutions we've built</p>
+            <div class="projects-grid" id="projectContainer"></div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2>Let's <span>Connect</span></h2>
+            <p class="subtitle">Ready to work together? Reach out to us</p>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>mazid.info67@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+880 1739 365 972</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Dhaka, Bangladesh</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="Your Name" required />
+                    <input type="email" placeholder="Your Email" required />
+                    <textarea placeholder="Your Message" rows="4" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 TeamPro. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/team-data.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

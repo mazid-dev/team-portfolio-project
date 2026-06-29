@@ -1,0 +1,33 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules
+node_modules/
+package-lock.json
+
+# Build files
+dist/
+build/
+
+# Temp files
+*.log
+*.tmp
+*.temp
+
+# Environment files
+.env
+.env.local
+
+# Backup files
+*.backup
+*.bak
+
+# Netlify
+.netlify/
