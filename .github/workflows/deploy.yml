@@ -1,55 +1,117 @@
-name: Team Portfolio CI/CD
+name: CI/CD Pipeline
 
+# ===== কখন রান করবে =====
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
 
+# ===== Jobs =====
 jobs:
-  validate-and-deploy:
+  # ===== 1. BUILD JOB (CI) =====
+  build:
     runs-on: ubuntu-latest
-
+    
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    # 1.1 Code Checkout
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    
+    # 1.2 Node.js Setup
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+    
+    # 1.3 HTML Validation
+    - name: Install HTML Validator
+      run: npm install -g html-validator-cli
+    
+    - name: Validate HTML
+      run: html-validator --file=index.html --verbose || true
+    
+    # 1.4 CSS Check
+    - name: Check CSS
+      run: |
+        npm install -g stylelint stylelint-config-standard
+        stylelint css/*.css --allow-empty-input || true
+    
+    # 1.5 JavaScript Check
+    - name: Check JavaScript
+      run: |
+        npm install -g eslint
+        eslint js/*.js --allow-empty-input || true
+    
+    # 1.6 Build
+    - name: Create .nojekyll
+      run: touch .nojekyll
+    
+    - name: Build Status
+      run: echo "✅ Build successful!"
+    
+    # 1.7 Deploy to Netlify (CD)
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v3.0
+      with:
+        publish-dir: '.'
+        production-branch: main
+        github-token: ${{ secrets.GH_TOKEN }}
+        deploy-message: "Deploy from GitHub Actions - ${{ github.sha }}"
+        enable-commit-comment: true
+        enable-pull-request-comment: true
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      timeout-minutes: 5
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
+  # ===== 2. TEST JOB =====
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    
+    - name: Check for broken links
+      run: |
+        npm install -g broken-link-checker
+        blc index.html --recursive --ordered || true
 
-      - name: Install Validation Tools
-        run: |
-          npm install -g html-validator-cli
-          npm install -g stylelint stylelint-config-standard
-          npm install -g eslint
-          npm install -g netlify-cli
+  # ===== 3. SECURITY JOB =====
+  security:
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    
+    - name: Run Security Audit
+      run: |
+        npm audit --production --audit-level=high || true
 
-      - name: Validate HTML
-        run: |
-          html-validator --file=index.html --verbose || true
-
-      - name: Validate CSS
-        run: |
-          stylelint css/*.css --allow-empty-input || true
-
-      - name: Validate JavaScript
-        run: |
-          eslint js/*.js --allow-empty-input || true
-
-      - name: Create .nojekyll
-        run: touch .nojekyll
-
-      - name: Deploy to Netlify
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: |
-          netlify deploy \
-            --dir=. \
-            --prod \
-            --site=$NETLIFY_SITE_ID
-
-      - name: Deployment Complete
-        run: echo "✅ Website deployed successfully!"
+  # ===== 4. NOTIFICATION JOB =====
+  notification:
+    runs-on: ubuntu-latest
+    needs: [build, test, security]
+    if: always()
+    
+    steps:
+    - name: Send Status Notification
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const status = '${{ needs.build.result }}';
+          const statusEmoji = status === 'success' ? '✅' : '❌';
+          console.log(`${statusEmoji} Deployment Status: ${status}`);
+          
+          if (status === 'success') {
+            console.log('🎉 Deployment successful!');
+          } else {
+            console.log('⚠️ Deployment failed. Please check the logs.');
+          }
