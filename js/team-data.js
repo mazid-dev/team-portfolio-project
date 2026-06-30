@@ -8,7 +8,7 @@ var teamMembers = [
         name: "Md Mazid Hossain",
         role: "DevOps Engineer & IT Executive",
         university: "Leading University, Sylhet",
-        studentId: "12-232-00",
+        studentId: "12-232-0028",
         bio: "4+ years in networking & infrastructure. Passionate about AWS, Docker, Kubernetes, Terraform, and automation. Currently working as IT Executive at VCube Soft and Tech.",
         skills: ["AWS", "Docker", "Kubernetes", "Terraform", "Linux", "MikroTik", "Cisco", "GitHub Actions"],
         experience: [
