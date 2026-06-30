@@ -8,7 +8,7 @@ var teamMembers = [
         name: "Md Mazid Hossain",
         role: "DevOps Engineer & IT Executive",
         university: "Leading University, Sylhet",
-        studentId: "CSE-2022-001",
+        studentId: "12-232-0028",
         bio: "4+ years in networking & infrastructure. Passionate about AWS, Docker, Kubernetes, Terraform, and automation. Currently working as IT Executive at VCube Soft and Tech.",
         skills: ["AWS", "Docker", "Kubernetes", "Terraform", "Linux", "MikroTik", "Cisco", "GitHub Actions"],
         experience: [
@@ -96,7 +96,7 @@ var teamMembers = [
         name: "Md Lokman Hossain",
         role: "Senior Network Engineer",
         university: "American International University-Bangladesh (AIUB)",
-        studentId: "12-232-0028",
+        studentId: "12-232-0016",
         bio: "3+ years in network design & implementation. Expert in MPLS, BGP, OSPF, and Network Monitoring. Cisco and MikroTik certified professional.",
         skills: [
             "Cisco CCNA", "MPLS", "BGP", "OSPF", "EIGRP", "VLAN", "NAT", "ACL",
