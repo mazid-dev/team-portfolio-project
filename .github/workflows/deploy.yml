@@ -49,7 +49,7 @@ jobs:
       with:
         publish-dir: '.'
         production-branch: main
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GH_TOKEN }}
         deploy-message: "Deploy from GitHub Actions - ${{ github.sha }}"
         enable-commit-comment: true
         enable-pull-request-comment: true
