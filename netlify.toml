@@ -1,13 +1,17 @@
-# Netlify Configuration File
+# ============================================
+# NETLIFY CONFIGURATION FILE
+# ============================================
 
 [build]
   publish = "."
 
+# ===== REDIRECTS =====
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+# ===== HEADERS =====
 [[headers]]
   for = "/*"
   [headers.values]
@@ -31,5 +35,26 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
+# ===== BUILD ENVIRONMENT =====
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "22"
+  NPM_VERSION = "10"
+
+# ===== DEPLOY NOTIFICATIONS =====
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+# ===== FORMS =====
+[build.processing.forms]
+  allow_domains = ["*"]
