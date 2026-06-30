@@ -1,26 +1,44 @@
-# 🚀 TeamPro - Professional Team Portfolio
+# 🎓 TeamPro - Professional Team Portfolio
+### A University Project on DevOps & Network Engineering
 
-## 👥 Team Members
-| নাম | পদ |
-|-----|-----|
-| **Md Mazid Hossain** | DevOps Engineer & IT Executive |
-| **Md. Abu Sayed** | Senior Network Engineer |
-| **Rochin Uddin** | Network Security Engineer |
-| **Lokman Hossain** | Senior Network Engineer |
+---
 
-## 🛠️ Technologies Used
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
-![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
+## 💻 Project Repository
+
+🔗 **GitHub Repository:** [https://github.com/mazid-dev/team-portfolio-project](https://github.com/mazid-dev/team-portfolio-project)
+
+> এই রিপোজিটরিতে পুরো প্রজেক্টের সোর্স কোড, কমিট হিস্ট্রি ও টিমের কাজের ইতিহাস দেখতে পাবেন।
+
+---
 
 ## 🌐 Live Demo
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://app.netlify.com/sites/team-portfolio-website-akmu/deploys)
 
 **Live Website:** [https://team-portfolio-website-akmu.netlify.app/](https://team-portfolio-website-akmu.netlify.app/)
 
-> 🔗 সরাসরি ওয়েবসাইট দেখতে উপরের লিংকে ক্লিক করুন।
+---
+
+## 👥 Team Members
+
+| **SL** | **Name** | **Student ID** | **Role** |
+|--------|----------|----------------|----------|
+| 01 | Md Mazid Hossain | CSE-2022-001 | DevOps Engineer & IT Executive |
+| 02 | Md. Abu Sayed | 12-232-0029 | Senior Network Engineer |
+| 03 | Rochin Uddin | 12-232-0042 | Network Security Engineer |
+| 04 | Lokman Hossain | 12-232-0028 | Senior Network Engineer |
+
+---
+
+## 🛠️ Technologies Used
+
+| **Category** | **Technologies** |
+|--------------|------------------|
+| **Frontend** | HTML5, CSS3, JavaScript |
+| **Version Control** | Git, GitHub |
+| **CI/CD** | GitHub Actions |
+| **Hosting** | Netlify |
+| **Tools** | VS Code, Netlify CLI |
+
+---
 
 ## 🔄 CI/CD Pipeline
 
@@ -37,18 +55,45 @@
 - ✅ SSL Certificate included
 - ✅ Global CDN
 
+---
 
 ## 🔧 Setup Instructions
 
 ### Local Development
 ```bash
-# 1. Clone Repository
+# 1. Clone the repository
 git clone https://github.com/mazid-dev/team-portfolio-project.git
 
-# 2. Open in Browser
+# 2. Navigate to project directory
 cd team-portfolio-project
-open index.html  # বা double-click করুন
 
-🌐 Live Website:
-text
-https://team-portfolio-website-akmu.netlify.app/
+# 3. Open in browser
+open index.html   # macOS
+start index.html  # Windows
+xdg-open index.html # Linux
+
+
+📚 Learning Outcomes
+SL	Learning Outcome
+01	Applied HTML, CSS, and JavaScript skills
+02	Implemented Git version control workflow
+03	Configured CI/CD pipeline with GitHub Actions
+04	Deployed application on Netlify
+05	Collaborated as a team on a real project
+06	Applied DevOps principles in practice
+📧 Contact Information
+Team Lead
+Name: Md Mazid Hossain
+
+Email: mazid.info67@gmail.com
+
+Phone: +880 1739 365 972
+
+Location: Dhaka, Bangladesh
+
+University
+Name: Anwer Khan Modern University
+
+Department: Computer Science & Engineering (CSE)
+
+Semester: Spring 2026
