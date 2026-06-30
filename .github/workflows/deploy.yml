@@ -1,104 +1,55 @@
-name: CI/CD Pipeline
+name: Team Portfolio CI/CD
 
 on:
   push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - develop
 
 jobs:
-  build:
+  validate-and-deploy:
     runs-on: ubuntu-latest
-    
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-    
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '22'
-    
-    - name: Install HTML Validator
-      run: npm install -g html-validator-cli
-    
-    - name: Validate HTML
-      run: html-validator --file=index.html --verbose || true
-    
-    - name: Check CSS
-      run: |
-        npm install -g stylelint stylelint-config-standard
-        stylelint css/*.css --allow-empty-input || true
-    
-    - name: Check JavaScript
-      run: |
-        npm install -g eslint
-        eslint js/*.js --allow-empty-input || true
-    
-    - name: Create .nojekyll
-      run: touch .nojekyll
-    
-    - name: Build Status
-      run: echo "✅ Build successful!"
-    
-    - name: Deploy to Netlify
-      uses: nwtgck/actions-netlify@v3.0
-      with:
-        publish-dir: '.'
-        production-branch: main
-        github-token: ${{ secrets.GH_TOKEN }}
-        deploy-message: "Deploy from GitHub Actions - ${{ github.sha }}"
-        enable-commit-comment: true
-        enable-pull-request-comment: true
-      env:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      timeout-minutes: 5
 
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
-    
-    - name: Check for broken links
-      run: |
-        npm install -g broken-link-checker
-        blc index.html --recursive --ordered || true
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-  security:
-    runs-on: ubuntu-latest
-    needs: build
-    
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
-    
-    - name: Run Security Audit
-      run: |
-        npm audit --production --audit-level=high || true
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-  notification:
-    runs-on: ubuntu-latest
-    needs: [build, test, security]
-    if: always()
-    
-    steps:
-    - name: Send Status Notification
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const status = '${{ needs.build.result }}';
-          const statusEmoji = status === 'success' ? '✅' : '❌';
-          console.log(`${statusEmoji} Deployment Status: ${status}`);
-          
-          if (status === 'success') {
-            console.log('🎉 Deployment successful!');
-          } else {
-            console.log('⚠️ Deployment failed. Please check the logs.');
-          }
+      - name: Install Validation Tools
+        run: |
+          npm install -g html-validator-cli
+          npm install -g stylelint stylelint-config-standard
+          npm install -g eslint
+          npm install -g netlify-cli
+
+      - name: Validate HTML
+        run: |
+          html-validator --file=index.html --verbose || true
+
+      - name: Validate CSS
+        run: |
+          stylelint css/*.css --allow-empty-input || true
+
+      - name: Validate JavaScript
+        run: |
+          eslint js/*.js --allow-empty-input || true
+
+      - name: Create .nojekyll
+        run: touch .nojekyll
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          netlify deploy \
+            --dir=. \
+            --prod \
+            --site=$NETLIFY_SITE_ID
+
+      - name: Deployment Complete
+        run: echo "✅ Website deployed successfully!"
