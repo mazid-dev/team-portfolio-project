@@ -1,4 +1,4 @@
-# 🎓 TeamPro - Professional Team Portfolio
+# TeamPro - Professional Team Portfolio
 ### A University Project on DevOps & Network Engineering
 
 ---
@@ -81,6 +81,7 @@ SL	Learning Outcome
 04	Deployed application on Netlify
 05	Collaborated as a team on a real project
 06	Applied DevOps principles in practice
+
 📧 Contact Information
 Team Lead
 Name: Md Mazid Hossain
