@@ -1,17 +1,17 @@
 # ============================================
-# NETLIFY CONFIGURATION FILE
+# NETLIFY CONFIGURATION
 # ============================================
 
 [build]
   publish = "."
 
-# ===== REDIRECTS =====
+# ===== Redirects =====
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# ===== HEADERS =====
+# ===== Headers =====
 [[headers]]
   for = "/*"
   [headers.values]
@@ -35,26 +35,7 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
-# ===== BUILD ENVIRONMENT =====
+# ===== Build Environment =====
 [build.environment]
   NODE_VERSION = "22"
   NPM_VERSION = "10"
-
-# ===== DEPLOY NOTIFICATIONS =====
-[build.processing]
-  skip_processing = false
-
-[build.processing.css]
-  bundle = true
-  minify = true
-
-[build.processing.js]
-  bundle = true
-  minify = true
-
-[build.processing.html]
-  pretty_urls = true
-
-# ===== FORMS =====
-[build.processing.forms]
-  allow_domains = ["*"]
